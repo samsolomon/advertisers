@@ -10,6 +10,17 @@ if ( empty ( $user_votes ) ) $user_votes = array();
 	<?php if ( $post->post_author != get_current_user_id() && ! in_array( $post->ID, $user_votes ) ): ?>
 			<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_the_ID() ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/up.png" alt="Upvote" /></a>
 		<?php endif; ?>	
+
+		<!-- show upvote points - is sprintf needed? -->
+		<?php
+			printf(
+				'%d',
+				upvote_get_points( get_the_ID(), 'post' ),
+				bp_core_get_userlink( $post->post_author ),
+				human_time_diff( strtotime( $post->post_date_gmt ) ),
+				sprintf( '<a href="%s">%d comments</a>', get_comments_link(), get_comments_number() ) 
+			);			
+		?>
 	</div> <!-- end vote -->
 	<div class="content">
 		<h2>
