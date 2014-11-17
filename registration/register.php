@@ -27,7 +27,7 @@
 		<?php do_action( 'bp_before_register_page' ); ?>
 	<div class="col-sm-6">
 		<?php if ( 'request-details' == bp_get_current_signup_step() ): ?>
-			<h2>Create a New Account</h2>
+			<h2>Create an Account</h2>
 		<?php endif; ?>
 
 		<form action="" name="signup_form" id="signup_form" class="standard-form" method="post" enctype="multipart/form-data">

@@ -9,7 +9,7 @@ if ( empty ( $user_votes ) ) $user_votes = array();
 	<div class="vote">
 	<?php if ( $post->post_author != get_current_user_id() && ! in_array( $post->ID, $user_votes ) ): ?>
 			<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_the_ID() ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/up.png" alt="Upvote" /></a>
-		<?php endif; ?>
+		<?php endif; ?>	
 	</div> <!-- end vote -->
 	<div class="content">
 		<h2>
@@ -20,11 +20,11 @@ if ( empty ( $user_votes ) ) $user_votes = array();
 		</h2>
 		<p class="byline"><?php
 			printf(
-				'%d points by %s %s ago | %s',
+				'%d points by %s %s ago — %s',
 				upvote_get_points( get_the_ID(), 'post' ),
 				bp_core_get_userlink( $post->post_author ),
 				human_time_diff( strtotime( $post->post_date_gmt ) ),
 				sprintf( '<a href="%s">%d comments</a>', get_comments_link(), get_comments_number() )
-			);
+			);			
 		?></p>
 	</div>
