@@ -1,6 +1,6 @@
-Fanarch
+Adboard
 =======
 
-Wordpress child theme for Fanarch, a reddit style newsboard for college sports.
+Wordpress child theme for a reddit style newsboard for people in the advertising industry.
 
 Upvote parent theme required.
