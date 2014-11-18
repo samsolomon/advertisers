@@ -8,14 +8,23 @@ $user_votes = get_user_meta( get_current_user_id(), '_votes_type_post' );
 if ( empty ( $user_votes ) ) $user_votes = array();
 ?>
 
-<table class="table">
-	<tr>
-		<td class="vote">
+<div class="table">
+		<div class="vote">
 			<?php if ( $post->post_author != get_current_user_id() && ! in_array( $post->ID, $user_votes ) ): ?>
 				<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_the_ID() ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/up.png" alt="Upvote" /></a>
 			<?php endif; ?>
-		</td>
-		<td>
+					<!-- show upvote points - is sprintf needed? -->
+			<?php
+			printf(
+				'%d',
+				upvote_get_points( get_the_ID(), 'post' ),
+				bp_core_get_userlink( $post->post_author ),
+				human_time_diff( strtotime( $post->post_date_gmt ) ),
+				sprintf( '<a href="%s">%d comments</a>', get_comments_link(), get_comments_number() ) 
+			);			
+			?>
+		</div>
+		<div class="content">
 			<h2>
 				<a href="<?php echo $url ? esc_url( $url ) : get_permalink(); ?>"><?php the_title(); ?></a>
 				<?php if ( $url ): ?>
@@ -33,12 +42,8 @@ if ( empty ( $user_votes ) ) $user_votes = array();
 			?></p>
 
 			<div class="entry-content"><?php the_content(); ?></div>
-		</td>
-	</tr>
-
-	<tr>
-		<td class="vote"></td>
-		<td>
+		</div>
+		
 			<div id="respond">
 				<form role="form" action="<?php echo site_url( '/wp-comments-post.php' ); ?>" method="post">
 					<textarea name="comment" class="form-control comment" rows="3"></textarea>
@@ -47,9 +52,8 @@ if ( empty ( $user_votes ) ) $user_votes = array();
 				</form>
 				<?php cancel_comment_reply_link( 'Cancel Reply' ); ?>
 			</div>
-		</td>
-	</tr>
-</table>
+
+</div>
 
 <?php comments_template(); ?>
 
