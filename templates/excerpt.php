@@ -6,9 +6,11 @@ $url = get_post_meta( get_the_ID(), 'url', true );
 $user_votes = get_user_meta( get_current_user_id(), '_votes_type_post' );
 if ( empty ( $user_votes ) ) $user_votes = array();
 ?>
+	<!-- make entire dive cliackable -->
+	<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_the_ID() ); ?>">
 	<div class="vote">
 	<?php if ( $post->post_author != get_current_user_id() && ! in_array( $post->ID, $user_votes ) ): ?>
-			<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_the_ID() ); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/up.png" alt="Upvote" /></a>
+			<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/up.png" alt="Upvote" />
 		<?php endif; ?>	
 
 		<!-- show upvote points - is sprintf needed? -->
@@ -21,7 +23,10 @@ if ( empty ( $user_votes ) ) $user_votes = array();
 				sprintf( '<a href="%s">%d comments</a>', get_comments_link(), get_comments_number() ) 
 			);			
 		?>
-	</div> <!-- end vote -->
+		
+	</div> 
+	</a><!-- end vote -->
+
 	<div class="content">
 		<h2>
 			<a href="<?php echo $url ? esc_url( $url ) : get_permalink(); ?>"><?php the_title(); ?></a>

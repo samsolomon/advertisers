@@ -64,8 +64,6 @@ h2 a {font-weight: 700;}
 h2 span {font-weight: 300;}
 
 
-.byline a {color: #00B6B6;}
-
 /* FORMS
 ------------------------------------------------------------------------------------------------ */
 #respond {margin-left: 25px;}
@@ -76,8 +74,8 @@ h2 span {font-weight: 300;}
 ------------------------------------------------------------------------------------------------ */
 .container {max-width: 768px;}
 
-.vote {float: left; margin-right: 5px;}
 .content {margin-left: 25px; margin-bottom: 2em}
+.table { margin: 3em 0;}
 
 .forgot {margin-left: 0;}
 
@@ -92,13 +90,13 @@ h2 span {font-weight: 300;}
 ------------------------------------------------------------------------------------------------ */
 .navbar {border-radius:0;background-color: #111; border: none; margin-bottom: 0;}
 
-a.navbar-brand { border-bottom: 1px solid #00B6B6; color: #fff; padding: 0; margin: 30px; font-size: 1.5em; font-weight: 600;}
+a.navbar-brand { border-bottom: 1px solid #DF1370; color: #fff; padding: 0; margin: 30px; font-size: 1.5em; font-weight: 600;}
 .navbar-nav > li > a { padding-top: 31px; padding-bottom: 31px; color: #eee; font-family: "Helvetica Neue";
 	-moz-transition: .3s ease-in;
 	-o-transition: .3s ease-in;
 	transition: .3s ease-in;
 }
-.navbar-nav > li > a:hover { color: #fff; background-color: #00B6B6; }
+.navbar-nav > li > a:hover { color: #fff; background-color: #DF1370; }
 
 .login {margin-right: -15px;}
 .login a {color: #fff; color: #eee; padding: 28px 15px 29px 15px; font-family: "Helvetica Neue"; display: inline-block; text-decoration:none;
@@ -106,7 +104,7 @@ a.navbar-brand { border-bottom: 1px solid #00B6B6; color: #fff; padding: 0; marg
 	-o-transition: .3s ease-in;
 	transition: .3s ease-in;
 	}
-.login a:hover { color: #fff; background-color: #00B6B6; }
+.login a:hover { color: #fff; background-color: #DF1370; }
 
 .login a span {color: #9B9B9B;
 	-moz-transition: .3s ease-in;
@@ -116,16 +114,35 @@ a.navbar-brand { border-bottom: 1px solid #00B6B6; color: #fff; padding: 0; marg
 .login a:hover span {color: #fff;}
 
 .welcome { background-color: #efefef;}
-.welcome .container {padding: 25px 0;}
+.welcome .container {padding: 20px 0;}
 .welcome h3, .welcome p {font-family: "Helvetica Neue"; font-size: 1em; letter-spacing: .2px;}
 .welcome h3 {color: #555;}
 .welcome p {font-weight: 200; color: #676767; line-height: 1.5;}
 
 
 
-/* MISC
+/* VOTE
 ------------------------------------------------------------------------------------------------ */
 .upvote-ajax img {width: 14px; height: auto;}
+
+.vote {float: left; margin-right: 15px; background-color: #eee; border-radius: 3px; width: 25px; text-decoration: none; cursor: pointer;
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+	-moz-transition: .3s ease-in;
+	-o-transition: .3s ease-in;
+	transition: .3s ease-in;
+}
+.vote:hover {background-color: #DF1370;}
+.vote:active {box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2); 
+	-moz-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+
+
+/* CONTENT SECTIONS
+------------------------------------------------------------------------------------------------ */
+.byline {margin-left: 15px;} /*align with vote class*/
+.byline a {color: #DF1370;}
 
 
 
