@@ -34,6 +34,7 @@
 				</button>
 				<a class="navbar-brand" href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?></a>			
 			</div>
+			
 
 			<div class="collapse navbar-collapse">
 				<?php wp_nav_menu( array (
