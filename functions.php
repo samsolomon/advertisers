@@ -42,7 +42,4 @@ function theme_slug_fonts_url() {
 
 
 
-
-
-
 ?>
