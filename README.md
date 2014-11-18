@@ -1,4 +1,4 @@
-Adboard
+Advertisers
 =======
 
 Wordpress child theme for a reddit style newsboard for people in the advertising industry.
