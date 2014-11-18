@@ -50,6 +50,16 @@
 
 		</div>
 
-	</div>
+	</div> <!-- end nav -->
+	
+
+	<div class="welcome">
+		<div class="container">
+			<h3>What is Advertisers.io?</h3>
+			<p>
+				Advertisers is the premier community for people working in marketing and advertising. Everyday you’ll find new discussions about design, strategy and technology. Subscribe to our newsletter and get the top stiories each week.
+			</p>
+		</div>
+	</div> <!-- end welcome message -->
 
 	<div class="container" id="content">

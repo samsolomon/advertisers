@@ -22,7 +22,7 @@ h1, h2, h3, h4, p, ul, ol, dl, address, table, form, hr, figure, audio, video { 
 
 h1 { font-weight: bold; font-size: 3em; line-height: 1.125; margin-bottom: .5em; }
 h2 { font-weight: bold; font-size: 1.75em; line-height: 1.25; margin-bottom: .25em;}
-h3 { font-weight: bold; font-size: 1.25em; line-height: 1.25; margin-bottom: 1em; }
+h3 { font-weight: bold; font-size: 1.25em; line-height: 1.25; margin-bottom: .25em; }
 h4 { font-weight: bold; font-size: 1em; }
 
 a, :focus { outline: 0; }
@@ -64,7 +64,7 @@ h2 a {font-weight: 700;}
 h2 span {font-weight: 300;}
 
 
-.byline a {color: #DF1370;}
+.byline a {color: #00B6B6;}
 
 /* FORMS
 ------------------------------------------------------------------------------------------------ */
@@ -90,23 +90,23 @@ h2 span {font-weight: 300;}
 
 /* NAVIGATION
 ------------------------------------------------------------------------------------------------ */
-.navbar {border-radius:0;background-color: #111; border: none;}
+.navbar {border-radius:0;background-color: #111; border: none; margin-bottom: 0;}
 
-a.navbar-brand { border-bottom: 1px solid #DF1370; color: #fff; padding: 0; margin: 30px; font-size: 1.5em; font-weight: 600; }
+a.navbar-brand { border-bottom: 1px solid #00B6B6; color: #fff; padding: 0; margin: 30px; font-size: 1.5em; font-weight: 600;}
 .navbar-nav > li > a { padding-top: 31px; padding-bottom: 31px; color: #eee; font-family: "Helvetica Neue";
 	-moz-transition: .3s ease-in;
 	-o-transition: .3s ease-in;
 	transition: .3s ease-in;
 }
-.navbar-nav > li > a:hover { color: #fff; background-color: #DF1370; }
+.navbar-nav > li > a:hover { color: #fff; background-color: #00B6B6; }
 
-/*.login {margin-top: 30px;}*/
+.login {margin-right: -15px;}
 .login a {color: #fff; color: #eee; padding: 28px 15px 29px 15px; font-family: "Helvetica Neue"; display: inline-block; text-decoration:none;
 	-moz-transition: .3s ease-in;
 	-o-transition: .3s ease-in;
 	transition: .3s ease-in;
 	}
-.login a:hover { color: #fff; background-color: #DF1370; }
+.login a:hover { color: #fff; background-color: #00B6B6; }
 
 .login a span {color: #9B9B9B;
 	-moz-transition: .3s ease-in;
@@ -114,6 +114,14 @@ a.navbar-brand { border-bottom: 1px solid #DF1370; color: #fff; padding: 0; marg
 	transition: .3s ease-in;
 }
 .login a:hover span {color: #fff;}
+
+.welcome { background-color: #efefef;}
+.welcome .container {padding: 25px 0;}
+.welcome h3, .welcome p {font-family: "Helvetica Neue"; font-size: 1em; letter-spacing: .2px;}
+.welcome h3 {color: #555;}
+.welcome p {font-weight: 200; color: #676767; line-height: 1.5;}
+
+
 
 /* MISC
 ------------------------------------------------------------------------------------------------ */
