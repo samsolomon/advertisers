@@ -5,9 +5,8 @@ Wordpress child theme for a reddit style newsboard for people in the advertising
 
 - Upvote parent theme required.
 - Footer menu must be named 'Footer.'
-- 
 
-# Upvote Installation Instructions
+## Upvote Installation Instructions
 1. Install Wordpress on your server.
 2. Install and activate the official BuddyPress plugin
 3. Unzip the theme files and upload them to /wp­content/themes/
