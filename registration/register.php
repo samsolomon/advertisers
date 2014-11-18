@@ -35,7 +35,7 @@
 				<?php do_action( 'template_notices' ); ?>
 				<?php do_action( 'bp_before_registration_disabled' ); ?>
 
-					<p><?php _e( 'User registration is currently not allowed.', 'buddypress' ); ?></p>
+					<p><?php _e( 'Registration is closed.', 'buddypress' ); ?></p>
 
 				<?php do_action( 'bp_after_registration_disabled' ); ?>
 			<?php endif; // registration-disabled signup setp ?>
