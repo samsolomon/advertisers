@@ -1,0 +1,103 @@
+This is the modified upvote_comment function. Should the parent theme be overwritten, this section of the function.php should be replaced.
+
+
+function upvote_comment( $comment, $args, $depth ) {
+	$GLOBALS['comment'] = $comment;
+
+	$user_id = get_current_user_id();
+	$upvotes = get_user_meta( $user_id, '_votes_type_comment_up' );
+	$downvotes = get_user_meta( $user_id, '_votes_type_comment_down' );
+	if ( empty ( $upvotes ) ) $upvotes = array();
+	if ( empty ( $downvotes ) ) $downvotes = array();
+
+	switch ( $comment->comment_type ) {
+		case 'pingback':
+		case 'trackback':
+?>
+	<p>Pingback: <?php comment_author_link(); ?><?php edit_comment_link( 'Edit', ' ' ); ?></p>
+<?php
+			break;
+
+		default:
+			if ( $depth < 2 )  {
+				$class = 'col-lg-12';
+			} else {
+				$class = sprintf( 'col-sm-%d col-sm-offset-%d', 13 - $depth , $depth - 1 );
+			}
+		?>
+<div class="row">
+	<div class="<?php echo $class; ?>">
+		<table class="table">
+			<tr>
+				<td class="vote">
+					<?php if ( $comment->user_id != $user_id ): ?>
+						<?php if ( ! in_array( $comment->comment_ID, $upvotes ) ): ?>
+						<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_comment_ID(), 'comment' ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/up.png" alt="Up vote" /></a>
+						<?php endif; ?>
+
+						
+						<!-- add points under comment upvote -->
+						<?php
+						printf(
+								'%d',
+								upvote_get_points( $comment->comment_ID, 'comment' ),
+								bp_core_get_userlink( $comment->user_id ),
+								human_time_diff( strtotime( $comment->comment_date_gmt ) ),
+								get_permalink( $comment->comment_post_ID )
+							);
+							?>
+
+							<!-- remove comment downvote -->
+						<!-- 
+						<?php if ( ! in_array( $comment->comment_ID, $downvotes ) ): ?>
+							<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_comment_ID(), 'comment', array( 'downvote' => true ) ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/down.png" alt="Down vote" /></a>
+						<?php endif; ?>
+					 -->
+					<?php endif; ?>
+				</td>
+
+				<td>
+					<div id="comment-<?php comment_ID(); ?>">
+						<?php if ( is_singular() ): ?>
+						<p class="byline"><?php
+							printf(
+								'%s %s ago | <a href="%s">link</a>',
+								bp_core_get_userlink( $comment->user_id ),
+								human_time_diff( strtotime( $comment->comment_date_gmt ) ),
+								get_comment_link( $comment )
+							);
+						?></p>
+						<?php else: ?>
+						<p class="byline"><?php
+							printf(
+								'%d points %s %s ago | <a href="%s">See post</a>',
+								upvote_get_points( $comment->comment_ID, 'comment' ),
+								bp_core_get_userlink( $comment->user_id ),
+								human_time_diff( strtotime( $comment->comment_date_gmt ) ),
+								get_permalink( $comment->comment_post_ID )
+							);
+						?></p>
+						<?php endif; ?>
+
+						<div id="div-comment-<?php comment_ID(); ?>" class="comment-body">
+							<?php if ( $comment->comment_approved == '0' ) : ?>
+								<div class="alert alert-warning">
+									<em class="comment-awaiting-moderation">Your comment is awaiting moderation.</em>
+								</div>
+							<?php endif; ?>
+							<?php comment_text( get_comment_id() ); ?>
+						</div>
+						<?php if ( is_singular() ): ?>
+						<p>
+							<?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+							<?php edit_comment_link( 'Edit', ' | ' ); ?>
+						</p>
+						<?php endif; ?>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+		<?php
+	}
+}
