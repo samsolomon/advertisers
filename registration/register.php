@@ -266,9 +266,9 @@
 				<?php do_action( 'bp_before_registration_confirmed' ); ?>
 
 				<?php if ( bp_registration_needs_activation() ) : ?>
-					<p><?php _e( 'You have successfully created your account! To begin using this site you will need to activate your account via the email we have just sent to your address.', 'buddypress' ); ?></p>
+					<p><?php _e( 'You have successfully created an account! Please check your email and click the link in the message we send you. Didn’t receive a confirmation? Check your spam folder.', 'buddypress' ); ?></p>
 				<?php else : ?>
-					<p><?php _e( 'You have successfully created your account! Please log in using the username and password you have just created.', 'buddypress' ); ?></p>
+					<p><?php _e( 'You have successfully created an account! Please log in using the username and password you have just created.', 'buddypress' ); ?></p>
 				<?php endif; ?>
 
 				<?php do_action( 'bp_after_registration_confirmed' ); ?>
