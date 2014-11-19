@@ -5,9 +5,9 @@ function enqueue_parent_theme_style() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
 }
 
-// add enqueue fonts
+// enqueue typekit fonts
 function theme_typekit() {
-    wp_enqueue_script( 'theme_typekit', '//use.typekit.net/hoo8stk.js');
+    wp_enqueue_script( 'theme_typekit', '//use.typekit.net/wzm6axt.js');
 }
 add_action( 'wp_enqueue_scripts', 'theme_typekit' );
  
