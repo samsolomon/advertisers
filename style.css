@@ -60,7 +60,7 @@ dt { font-weight: bold; }
 dd {  }
 dd + dt, dd + dd { margin-top: 1.5em; }
 
-h2 a {font-weight: 700;}
+h2 a {font-weight: bold;}
 h2 span {font-weight: 300;}
 
 
@@ -164,7 +164,7 @@ box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
 
 .submit {margin: 3em 0;}
 
-a.comment-reply-link, a.comment-reply-login {color: #DF1370; }
+a.comment-reply-link, a.comment-reply-l {color: #DF1370; }
 
 
 /* FOOTER

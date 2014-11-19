@@ -6,39 +6,16 @@ function enqueue_parent_theme_style() {
 }
 
 // add enqueue fonts
-function theme_slug_scripts_styles() {
-    wp_enqueue_style( 'theme-slug-fonts', theme_slug_fonts_url(), array(), null );
+function theme_typekit() {
+    wp_enqueue_script( 'theme_typekit', '//use.typekit.net/hoo8stk.js');
 }
-add_action( 'wp_enqueue_scripts', 'theme_slug_scripts_styles' );
-
-
-// add required fonts
-function theme_slug_fonts_url() {
-    $fonts_url = '';
+add_action( 'wp_enqueue_scripts', 'theme_typekit' );
  
-    /* Translators: If there are characters in your language that are not
-    * supported by Source Sans Pro, translate this to 'off'. Do not translate
-    * into your own language.
-    */
-    $source_sans_pro = _x( 'on', 'Source Sans Pro font: on or off', 'theme-slug' );
- 
-    if ( 'off' !== $lora || 'off' !== $source_sans_pro ) {
-        $font_families = array();      
- 
-        if ( 'off' !== $source_sans_pro ) {
-            $font_families[] = 'Source Sans Pro:700italic,400,700,600,300';
-        }
- 
-        $query_args = array(
-            'family' => urlencode( implode( '|', $font_families ) ),
-            'subset' => urlencode( 'latin,latin-ext' ),
-        );
- 
-        $fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
-    }
- 
-    return $fonts_url;
-}
+function theme_typekit_inline() {
+  if ( wp_script_is( 'theme_typekit', 'done' ) ) { ?>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<?php } }
+add_action( 'wp_head', 'theme_typekit_inline' );
 
 
 
