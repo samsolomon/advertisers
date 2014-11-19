@@ -4,6 +4,7 @@ Advertisers
 Wordpress child theme for a reddit style newsboard for people in the advertising industry.
 
 - Upvote parent theme required.
+- Upvote only works with BuddyPress version 2.0.2 as of now.
 - Footer menu must be named 'Footer.'
 
 ## Upvote Installation Instructions
