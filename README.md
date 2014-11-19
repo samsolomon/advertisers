@@ -6,6 +6,7 @@ Wordpress child theme for a reddit style newsboard for people in the advertising
 - Upvote parent theme required.
 - Upvote only works with BuddyPress version 2.0.2 as of now.
 - Footer menu must be named 'Footer.'
+- The upvote_comment function in functions.php must be replaced with the one found in the txt file.
 
 ## Upvote Installation Instructions
 1. Install Wordpress on your server.
