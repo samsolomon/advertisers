@@ -16,7 +16,7 @@ if ( ! have_posts() ) {
 
 <?php if ( $GLOBALS['wp_query']->max_num_pages > 1 ): ?>
 	<ul class="pager">
-		<li><?php echo next_posts_link( 'More' ); ?></li>
+		<li><?php echo next_posts_link( 'See More Stories' ); ?></li>
 	</ul>
 <?php endif; ?>
 
