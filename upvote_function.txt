@@ -1,6 +1,106 @@
-This is the modified upvote_comment function. Should the parent theme be overwritten, this section of the function.php should be replaced.
+<?php
+/**
+ * Theme Functions
+ *
+ * @version 1.0.0
+ * @package Upvote
+ */
 
+// Hide toolbar for all users on front-end
+show_admin_bar(false);
 
+require_once( 'inc/theme-options.php' );
+require_once( 'inc/bootstrap-nav-walker.php' );
+require_once( 'inc/votings.php' );
+
+/**
+ * Set the content width based on theme's design and stylesheet
+ */
+if ( ! isset ( $content_width ) ) {
+	$content_width = 640; # Pixels
+}
+
+/**
+ * Register theme features
+ *
+ * @hook after_setup_theme
+ */
+function upvote_theme_setup() {
+	// Add default posts and comments RSS feed links to head.
+	add_theme_support( 'automatic-feed-links' );
+
+	// Enable support for post thumbnails
+	add_theme_support( 'post-thumbnails' );
+
+	// Enable HTML 5 Support in WordPress
+	add_theme_support( 'html5' );
+
+	// Navigation Menus
+	register_nav_menus(array(
+		'primary' => 'Main Navigation'
+	));
+}
+add_action( 'after_setup_theme', 'upvote_theme_setup' );
+
+/**
+ * Enqueue scripts and stylesheets
+ *
+ * @hook wp_enqueue_scripts
+ */
+function upvote_enqueue_scripts() {
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.css', null, '3.0.3' );
+	wp_enqueue_style( 'upvote', get_stylesheet_uri(), null, '1.0.0' );
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '3.0.3', 1 );
+	wp_enqueue_script( 'upvote', get_template_directory_uri() . '/js/upvote.js', array( 'jquery' ) );
+	wp_localize_script( 'upvote', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
+}
+add_action( 'wp_enqueue_scripts', 'upvote_enqueue_scripts' );
+
+/**
+ * Filters `wp_title` to print a neat `<title>` tag based on what is being viewed.
+ *
+ * @global int $page
+ * @global int $paged
+ * @param string $title
+ * @param string $sep
+ * @return string
+ */
+function upvote_wp_title( $title, $sep ) {
+	global $page, $paged;
+
+	if ( is_feed() ) {
+		return $title;
+	}
+
+	$title .= get_bloginfo('name');
+
+	$site_description = get_bloginfo('description', 'display');
+	if ( $site_description && ( is_home() || is_front_page() ) ) {
+		$title .= " - $site_description";
+	}
+
+	if ( $paged >= 2 || $page >=2  ) {
+		$title .= "$sep " . sprintf( "Page %s", max( $page, $paged ) );
+	}
+
+	return $title;
+}
+add_filter( 'wp_title', 'upvote_wp_title', 10, 2 );
+
+// Ensure only logged-in can comment.
+add_filter( 'pre_option_comment_registration', '__return_true' );
+
+/**
+ * Comment Callback
+ *
+ *
+ */
 function upvote_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 
@@ -27,9 +127,9 @@ function upvote_comment( $comment, $args, $depth ) {
 		?>
 <div class="row">
 	<div class="<?php echo $class; ?>">
-		<table class="table">
-			<tr>
-				<td class="vote">
+		<div class="table-comment">
+			
+				<div class="vote">
 					<?php if ( $comment->user_id != $user_id ): ?>
 						<?php if ( ! in_array( $comment->comment_ID, $upvotes ) ): ?>
 						<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_comment_ID(), 'comment' ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/up.png" alt="Up vote" /></a>
@@ -54,14 +154,14 @@ function upvote_comment( $comment, $args, $depth ) {
 						<?php endif; ?>
 					 -->
 					<?php endif; ?>
-				</td>
+				</div>
 
-				<td>
+				<div class="comment-block">
 					<div id="comment-<?php comment_ID(); ?>">
 						<?php if ( is_singular() ): ?>
 						<p class="byline"><?php
 							printf(
-								'%s %s ago | <a href="%s">link</a>',
+								'%s %s ago — <a href="%s">link</a>',
 								bp_core_get_userlink( $comment->user_id ),
 								human_time_diff( strtotime( $comment->comment_date_gmt ) ),
 								get_comment_link( $comment )
@@ -70,7 +170,7 @@ function upvote_comment( $comment, $args, $depth ) {
 						<?php else: ?>
 						<p class="byline"><?php
 							printf(
-								'%d points %s %s ago | <a href="%s">See post</a>',
+								'%d points %s %s ago — <a href="%s">See post</a>',
 								upvote_get_points( $comment->comment_ID, 'comment' ),
 								bp_core_get_userlink( $comment->user_id ),
 								human_time_diff( strtotime( $comment->comment_date_gmt ) ),
@@ -94,10 +194,125 @@ function upvote_comment( $comment, $args, $depth ) {
 						</p>
 						<?php endif; ?>
 					</div>
-				</td>
-			</tr>
-		</table>
+				</div>
+			
+		</div><!-- end table -->
 	</div>
 		<?php
 	}
 }
+
+
+/**
+ * Query filter
+ *
+ * @param WP_Query $query
+ */
+function upvote_pre_get_posts( &$query ) {
+	if ( ! $query->is_main_query() )
+		return;
+
+	if ( $query->is_home() ) {
+		if ( ! isset ( $_REQUEST['order'] ) || 'new' !== $_REQUEST['order'] ) {
+			$query->set( 'meta_key', '_upvotes' );
+			$query->set( 'orderby', 'meta_value_num' );
+			$query->set( 'order', 'DESC' );
+			add_filter( 'posts_orderby', 'upvote_posts_orderby', 0, 2 );
+			add_filter( 'posts_fields', 'upvote_posts_fields', 0, 2);
+		}
+	}
+
+	if ( $query->is_author() && isset ( $query->query_vars['comments'] ) ) {
+		add_filter( 'posts_where', 'upvote_invalidate_author_query', 0, 2 );
+	}
+}
+add_action( 'pre_get_posts', 'upvote_pre_get_posts', 0, 1 );
+
+function upvote_posts_orderby( $order, $query ) {
+	if ( $query->is_main_query() && $query->is_home() ) {
+		$order = 'score DESC';
+	}
+
+	return $order;
+}
+
+function upvote_posts_fields( $fields, $query ) {
+	if ( $query->is_main_query() && $query->is_home() ) {
+		global $wpdb;
+		$now = date( 'Y-m-d H:i:s', current_time( 'timestamp', true ) );
+		$gravity = upvote_theme_options( 'point-gravity' );
+		if ( ! $gravity ) $gravity = 1.8;
+		$default_points = ( int ) upvote_theme_options('default-points');
+		$fields .= ', ( ( ' . $wpdb->postmeta . '.meta_value + ' . $default_points . ' - 1 ) / pow( ( TIMESTAMPDIFF( SECOND, ' . $wpdb->posts . '.post_date_gmt, "'. $now .'" ) / 3600 ) + 2, ' . $gravity . ' ) ) as score';
+	}
+
+	return $fields;
+}
+
+/**
+ *
+ * @param string $where
+ * @param WP_Query $query
+ * @return string
+ */
+function upvote_invalidate_author_query( $where, $query ) {
+	if ( $query->is_main_query() && $query->is_author() ) {
+		$where = 'AND 0';
+		$comment_query = new WP_Comment_Query();
+		$query->comments = $comment_query->query( array(
+			'user_id'	 => get_queried_object_id(),
+			'number'	 => 50
+		) );
+	}
+
+	return $where;
+}
+
+/**
+ * Add rewrite rules
+ *
+ */
+function upvote_rewrite_rules() {
+	add_rewrite_endpoint( 'comments', EP_AUTHORS );
+}
+add_action( 'init', 'upvote_rewrite_rules' );
+
+/*** Buddypress Hooks *********************************************************/
+function upvote_wrap_signup_error( $error ) {
+	if ( ! $error ) {
+		return $error;
+	}
+
+	return '<div class="text-danger">' . $error . '</div>';
+}
+add_filter( 'bp_members_signup_error_message', 'upvote_wrap_signup_error' );
+
+function upvote_bp_setup_nav() {
+	$bp = buddypress();
+
+	if ( ! bp_is_active ( 'xprofile' ) ) {
+		unset( $bp->bp_nav['profile'] );
+		unset( $bp->bp_options_nav['profile'] );
+	}
+}
+add_action( 'bp_setup_nav', 'upvote_bp_setup_nav', 100 );
+
+/**
+ *
+ * @global wpdb $wpdb
+ * @param BP_User_Query $bp_user_query
+ */
+function upvote_bp_pre_user_query( &$bp_user_query ) {
+	global $wpdb;
+
+	$order_posts = <<<ORDER
+SELECT SUM(pm.meta_value) FROM {$wpdb->posts} AS p INNER JOIN {$wpdb->postmeta} AS pm ON(p.ID = pm.post_id AND pm.meta_key = '_upvotes') WHERE p.post_author = u.user_id AND p.post_type = "post" AND p.post_status = "publish" GROUP BY p.post_author
+ORDER;
+
+	$order_comments = <<<ORDER
+SELECT SUM(cm.meta_value) FROM {$wpdb->comments} as c INNER JOIN {$wpdb->commentmeta} AS cm ON(c.comment_ID = cm.comment_id AND cm.meta_key = "_upvotes") WHERE c.user_id = u.user_id AND c.comment_approved = '1' GROUP BY c.user_id
+ORDER;
+
+	$bp_user_query->uid_clauses['orderby'] = "ORDER BY ( IFNULL( ({$order_posts}), 0 ) + IFNULL( ({$order_comments}), 0 ) )";
+}
+add_action( 'bp_pre_user_query', 'upvote_bp_pre_user_query', 0, 1 );
