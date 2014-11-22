@@ -55,10 +55,12 @@
 
 	<div class="welcome">
 		<div class="container">
+		<div class="row">
 			<h3>What is Advertisers.io?</h3>
 			<p>
-				Advertisers is the premier community for people working in marketing and advertising. Everyday you’ll find new discussions about design, strategy and technology.
+				Advertisers is the premier community for people working in marketing and advertising. Everyday you’ll find new discussions about design, branding and technology.
 			</p>
+		</div>	
 		</div>
 	</div> <!-- end welcome message -->
 
