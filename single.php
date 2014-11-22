@@ -33,7 +33,7 @@ if ( empty ( $user_votes ) ) $user_votes = array();
 			</h2>
 			<p class="byline"><?php
 				printf(
-					'%d points by %s %s ago | %s',
+					'%d points by %s %s ago — %s',
 					upvote_get_points( get_the_ID(), 'post' ),
 					bp_core_get_userlink( $post->post_author ),
 					human_time_diff( strtotime( $post->post_date_gmt ) ),
