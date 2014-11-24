@@ -11,7 +11,7 @@ if ( ! is_user_logged_in() ) {
 get_header();
 the_post();
 ?>
-	<div class="row submit">
+	<div class="row submit-link">
 		<?php get_template_part( 'templates/submit' ); ?>
 		<?php the_content(); ?>
 	</div>
