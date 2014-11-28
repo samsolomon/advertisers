@@ -68,6 +68,7 @@ dd + dt, dd + dd { margin-top: 1.5em; }
 h2 a {font-weight: 700;}
 h2 span {font-weight: 300;}
 
+.entry-title { margin-bottom: 0; }
 
 /* FORMS
 ------------------------------------------------------------------------------------------------ */
@@ -162,17 +163,13 @@ a.navbar-brand { border-bottom: 1px solid #DF1370; color: #fff; padding: 0; marg
 ------------------------------------------------------------------------------------------------ */
 .upvote-ajax img {width: 14px; height: auto;}
 
-.vote {float: left; background-color: #eee; border-radius: 0px; width: 25px; text-decoration: none; cursor: pointer; color: #222;
-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+.vote {float: left;/* background-color: #eee;*/border:1px solid #eee; border-radius: 0px; width: 25px; text-decoration: none; cursor: pointer; color: #222;
 	-moz-transition: .3s ease-in;
 	-o-transition: .3s ease-in;
 	transition: .3s ease-in;
 }
-.vote:hover {background-color: #DF1370;}
-.vote:active {box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2); 
-	-moz-transition: none;
-	-o-transition: none;
-	transition: none;
+.vote:hover {/*background-color: #DF1370;*/ border:1px solid #DF1370;}
+
 }
 
 
