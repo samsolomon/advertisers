@@ -12,7 +12,7 @@
 				}
 			} );
 			// $(this).find('img').fadeOut();
-			$(this).find('img').attr("src", "../img/upvoted.png")
+			$(this).find('img').attr("src", "http://advertisers.io/wp-content/themes/advertisers/img/upvote.png")
 		});
 
 	});
