@@ -163,14 +163,12 @@ a.navbar-brand { border-bottom: 1px solid #DF1370; color: #fff; padding: 0; marg
 ------------------------------------------------------------------------------------------------ */
 .upvote-ajax img {width: 14px; height: auto;}
 
-.vote {float: left;/* background-color: #eee;*/border:1px solid #eee; border-radius: 0px; width: 25px; text-decoration: none; cursor: pointer; color: #222;
+.vote {float: left; border:1px solid #eee; border-radius: 0px; width: 25px; text-decoration: none; cursor: pointer; color: #222; margin-top: 8px;
 	-moz-transition: .3s ease-in;
 	-o-transition: .3s ease-in;
 	transition: .3s ease-in;
 }
-.vote:hover {/*background-color: #DF1370;*/ border:1px solid #DF1370;}
-
-}
+.vote:hover { border:1px solid #DF1370;} /*alt #13DFBB;*/
 
 
 /* CONTENT SECTIONS

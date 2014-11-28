@@ -10,7 +10,7 @@ if ( empty ( $user_votes ) ) $user_votes = array();
 
 <div class="table">
 		<div class="vote">
-			<?php if ( $post->post_author != get_current_user_id() && ! in_array( $post->ID, $user_votes ) ): ?>
+			<?php if ( $post->post_author != get_current_user_id() && ! in_array( $post->ID, $user_votes ) ): ?> <!-- If post author automatically count vote -->
 				<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_the_ID() ); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/up.png" alt="Upvote" /></a>
 			<?php endif; ?>
 					<!-- show upvote points - is sprintf needed? -->
