@@ -168,6 +168,8 @@ a.navbar-brand { border-bottom: 1px solid #DF1370; color: #fff; padding: 0; marg
 	-o-transition: .3s ease-in;
 	transition: .3s ease-in;
 }
+
+.table-comment .vote {margin-top: 0;}
 .vote:hover { border:1px solid #DF1370;} /*alt #13DFBB;*/
 
 
