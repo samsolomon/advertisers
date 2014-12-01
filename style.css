@@ -194,9 +194,10 @@ footer li { display: inline; margin-right: 15px; }
 footer li a {font-family: "Helvetica Neue"; font-size: .7em; color: #222 !important;}
 
 
-/* 404
+/* Other
 ------------------------------------------------------------------------------------------------ */
-
+/*Profile Page*/
+.label-primary {background-color: #DF1370;} 
 
 /*
 ===================================================================================================
