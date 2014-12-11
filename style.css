@@ -122,11 +122,12 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(223, 19, 112, 0.6
 .navbar {border-radius:0;background-color: #111; border: none; margin-bottom: 0;}
 
 a.navbar-brand { border-bottom: 1px solid #DF1370; color: #fff; padding: 0 0 4px 0; margin: 30px; font-size: 1.5em; font-weight: 500;}
-.navbar-nav > li > a { padding-top: 31px; padding-bottom: 31px; color: #eee; font-family: "Helvetica Neue";
+.navbar-nav > li > a { padding-top: 31px; padding-bottom: 34px; color: #eee; font-family: "Helvetica Neue"; border-left: 1px solid #333; text-transform: uppercase; font-size: .8em;
 	-moz-transition: .3s ease-in;
 	-o-transition: .3s ease-in;
 	transition: .3s ease-in;
 }
+.navbar-nav > li:last-child > a {border-right:1px solid #333;}
 .navbar-nav > li > a:hover { color: #fff; background-color: #DF1370; }
 
 .login {margin-right: -15px;}
