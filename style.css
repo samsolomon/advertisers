@@ -131,14 +131,14 @@ a.navbar-brand { border-bottom: 1px solid #DF1370; color: #fff; padding: 0 0 4px
 .navbar-nav > li > a:hover { color: #fff; background-color: #DF1370; }
 
 .login {margin-right: -15px;}
-.login a {color: #fff; color: #eee; padding: 28px 15px 29px 15px; font-family: "Helvetica Neue"; display: inline-block; text-decoration:none;
+.login a {color: #fff; color: #eee; padding: 31px 15px 34px 15px; font-family: "Helvetica Neue"; font-size: .8em; display: inline-block; text-decoration:none; text-transform: uppercase; border-left: 1px solid #333; border-right:1px solid #333;
 	-moz-transition: .3s ease-in;
 	-o-transition: .3s ease-in;
 	transition: .3s ease-in;
 	}
 .login a:hover { color: #fff; background-color: #DF1370; }
 
-.login a span {color: #9B9B9B;
+.login a span {color: #9B9B9B; font-size: .8em;
 	-moz-transition: .3s ease-in;
 	-o-transition: .3s ease-in;
 	transition: .3s ease-in;
