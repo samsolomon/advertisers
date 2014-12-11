@@ -53,7 +53,7 @@
 	</div> <!-- end nav -->
 	
 
-	<div class="welcome">
+<!-- 	<div class="welcome">
 		<div class="container">
 		<div class="row">
 			<h3>What is Advertisers.io?</h3>
@@ -62,6 +62,6 @@
 			</p>
 		</div>	
 		</div>
-	</div> <!-- end welcome message -->
+	</div>  --><!-- end welcome message -->
 
 	<div class="container" id="content">
