@@ -129,14 +129,14 @@ function upvote_comment( $comment, $args, $depth ) {
 	<div class="<?php echo $class; ?>">
 		<div class="table-comment">
 			
-				<div class="vote">
+				<!-- <div class="vote">
 					<?php if ( $comment->user_id != $user_id ): ?>
 						<?php if ( ! in_array( $comment->comment_ID, $upvotes ) ): ?>
 						<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_comment_ID(), 'comment' ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/up.png" alt="Up vote" /></a>
 						<?php endif; ?>
 
 						
-						<!-- add points under comment upvote -->
+						add points under comment upvote
 						<?php
 						printf(
 								'%d',
@@ -147,14 +147,14 @@ function upvote_comment( $comment, $args, $depth ) {
 							);
 							?>
 
-							<!-- remove comment downvote -->
-						<!-- 
+							 remove comment downvote 
+						
 						<?php if ( ! in_array( $comment->comment_ID, $downvotes ) ): ?>
 							<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_comment_ID(), 'comment', array( 'downvote' => true ) ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/down.png" alt="Down vote" /></a>
 						<?php endif; ?>
-					 -->
+					
 					<?php endif; ?>
-				</div>
+				</div> -->
 
 				<div class="comment-block">
 					<div id="comment-<?php comment_ID(); ?>">

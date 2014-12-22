@@ -6,7 +6,7 @@ $url = get_post_meta( get_the_ID(), 'url', true );
 $user_votes = get_user_meta( get_current_user_id(), '_votes_type_post' );
 if ( empty ( $user_votes ) ) $user_votes = array();
 ?>
-	<!-- make entire dive cliackable -->
+	<!-- make entire div cliackable -->
 	<a class="upvote-ajax" href="<?php echo upvote_get_vote_url( get_the_ID() ); ?>">
 	<div class="vote">
 	<?php if ( $post->post_author != get_current_user_id() && ! in_array( $post->ID, $user_votes ) ): ?>
